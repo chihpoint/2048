@@ -7,7 +7,7 @@ public class Game {
     int size = field.length;
     Random random = new Random();
     int score = 0;
-    boolean flag = true;
+    boolean fieldHasChanged = true;
 
     public void spawnDigit() {
         int x = random.nextInt(size);
@@ -21,11 +21,11 @@ public class Game {
     }
 
     public void newField() {
-        if (flag) spawnDigit();
+        if (fieldHasChanged) spawnDigit();
     }
 
     public void swipeLeft() {
-        flag = false;
+        fieldHasChanged = false;
         for (int i = 0; i < size; i++) {
             boolean[] summed = {false, false, false, false};
             for (int j = 1; j < size; j++) {
@@ -35,14 +35,14 @@ public class Game {
                         field[i][k - 1] = field[i][k];
                         field[i][k] = 0;
                         k--;
-                        flag = true;
+                        fieldHasChanged = true;
                     }
                     if (k > 0 && field[i][k - 1] == field[i][k] && !summed[k - 1]) {
                         field[i][k - 1] *= 2;
                         score += field[i][k - 1];
                         field[i][k] = 0;
                         summed[k - 1] = true;
-                        flag = true;
+                        fieldHasChanged = true;
                     }
                 }
             }
@@ -51,7 +51,7 @@ public class Game {
     }
 
     public void swipeRight() {
-        flag = false;
+        fieldHasChanged = false;
         for (int i = 0; i < size; i++) {
             boolean[] summed = {false, false, false, false};
             for (int j = size - 2; j >= 0; j--) {
@@ -61,14 +61,14 @@ public class Game {
                         field[i][k + 1] = field[i][k];
                         field[i][k] = 0;
                         k++;
-                        flag = true;
+                        fieldHasChanged = true;
                     }
                     if (k < size - 1 && field[i][k + 1] == field[i][k] && !summed[k + 1]) {
                         field[i][k + 1] *= 2;
                         score += field[i][k + 1];
                         field[i][k] = 0;
                         summed[k + 1] = true;
-                        flag = true;
+                        fieldHasChanged = true;
                     }
                 }
             }
@@ -77,7 +77,7 @@ public class Game {
     }
 
     public void swipeUp() {
-        flag = false;
+        fieldHasChanged = false;
         for (int j = 0; j < size; j++) {
             boolean[] summed = {false, false, false, false};
             for (int i = 1; i < size; i++) {
@@ -87,14 +87,14 @@ public class Game {
                         field[k - 1][j] = field[k][j];
                         field[k][j] = 0;
                         k--;
-                        flag = true;
+                        fieldHasChanged = true;
                     }
                     if (k > 0 && field[k - 1][j] == field[k][j] && !summed[k - 1]) {
                         field[k - 1][j] *= 2;
                         score += field[k - 1][j];
                         field[k][j] = 0;
                         summed[k - 1] = true;
-                        flag = true;
+                        fieldHasChanged = true;
                     }
                 }
             }
@@ -103,7 +103,7 @@ public class Game {
     }
 
     public void swipeDown() {
-        flag = false;
+        fieldHasChanged = false;
         for (int i = size - 2; i >= 0; i--) {
             boolean[] summed = {false, false, false, false};
             for (int j = 0; j < size; j++) {
@@ -113,14 +113,14 @@ public class Game {
                         field[k + 1][j] = field[k][j];
                         field[k][j] = 0;
                         k++;
-                        flag = true;
+                        fieldHasChanged = true;
                     }
                     if (k < size - 1 && field[k + 1][j] == field[k][j] && !summed[k + 1]) {
                         field[k + 1][j] *= 2;
                         score += field[k + 1][j];
                         field[k][j] = 0;
                         summed[k + 1] = true;
-                        flag = true;
+                        fieldHasChanged = true;
                     }
                 }
             }
@@ -134,12 +134,19 @@ public class Game {
     public int getValue(int i, int j) {
         return field[i][j];
     }
-    public boolean assertDigit() {
-        for(int i = 0; i < 4; i++) {
-            for(int j = 0; j < 4; j++) {
-                if (field[i][j] != 0) return true;
+
+    public boolean gameOver() {
+        boolean isThereAMove = false;
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (field[i][j] == 0) {
+                    isThereAMove = true;
+                    break;
+                }
+                if (i < 3 && field[i + 1][j] == field[i][j]) isThereAMove = true;
+                if (j < 3 && field[i][j + 1] == field[i][j]) isThereAMove = true;
             }
         }
-        return false;
+        return isThereAMove;
     }
 }

@@ -7,6 +7,30 @@
     android:background="#FFF8DC"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/best"
+        android:layout_width="160sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="220dp"
+        android:background="@drawable/best_score"
+        android:text=" BEST"
+        android:textColor="#228B22"
+        android:fontFamily="helvetica"
+        android:textSize="23sp"/>
+    <TextView
+        android:id="@+id/bestScore"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/best_score"
+        android:fontFamily="helvetica"
+        android:text=""
+        android:textColor="#228B22"
+        android:textSize="23sp"
+        android:gravity="right"/>
+
 
     <TextView
         android:layout_width="150dp"
@@ -21,29 +45,29 @@
 
 
     <TextView
-        android:layout_width="125sp"
-        android:layout_height="130sp"
-        android:layout_marginLeft="250dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="160sp"
+        android:layout_height="40sp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/round_corners"
         android:fontFamily="helvetica"
-        android:gravity="center_horizontal"
-        android:text="SCORE"
+        android:gravity="left"
+        android:text=" SCORE"
         android:textColor="#FFFFE0"
-        android:textSize="30sp" />
+        android:textSize="23sp" />
 
     <TextView
         android:id="@+id/mScore"
         android:layout_width="70dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="275dp"
-        android:layout_marginTop="110dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/round_corners"
         android:fontFamily="helvetica"
         android:text=""
         android:textColor="#FFFFE0"
-        android:textSize="30sp"
-        android:gravity="center"/>
+        android:textSize="23sp"
+        android:gravity="right"/>
 
 
     <GridLayout
@@ -300,13 +324,5 @@
         android:textColor="@android:color/transparent"
         android:background="@android:color/transparent"
         android:gravity="center"/>
-
-<!--    <Button-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:text="TRY AGAIN"-->
-<!--        android:textColor="@android:color/transparent"-->
-<!--        android:background="@android:color/transparent"-->
-
 </RelativeLayout>
 
