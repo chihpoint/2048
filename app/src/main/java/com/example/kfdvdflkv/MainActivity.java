@@ -4,34 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button play;
-    File file = new File("bestScore.txt");
-    int bestScore;
-
-    Game game = new Game();
-
     @Override
     public void onCreate(Bundle savedInstanceState){
 
@@ -41,11 +23,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button play = findViewById(R.id.play);
         play.setOnClickListener(this);
-        System.out.println(28744);
+
         File file = new File(getApplicationContext().getFilesDir(), "bestScore.txt");
         try {
-            boolean ok = file.createNewFile();
-            if(ok){
+            boolean fileHasBeenCreated = file.createNewFile();
+            if(fileHasBeenCreated){
                 FileOutputStream fos = null;
                 try {
                     fos = openFileOutput("bestScore.txt", Context.MODE_PRIVATE);
@@ -73,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String bestScore = new String(bytes);
             menuScore.setText(bestScore);
         } catch (IOException ignored) {
-
         }
     }
 

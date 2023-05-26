@@ -62,11 +62,9 @@ public class GameActivity extends AppCompatActivity {
                     if (Integer.parseInt(bestScore) < Integer.parseInt(score)) {
                         bestScore = score;
                     }
-
                 } catch (IOException ignored) {
 
                 }
-                System.out.println(bestScore);
                 if(Integer.parseInt(bestScore) <= Integer.parseInt(score)){
                     FileOutputStream fos = null;
                     try {
@@ -88,7 +86,6 @@ public class GameActivity extends AppCompatActivity {
                 TextView newBestScore = findViewById(R.id.bestScore);
                 mScore.setText(score);
                 newBestScore.setText(bestScore);
-                System.out.println(bestScore);
                 updateGrid();
                 updateColor();
                 game_over();
@@ -96,7 +93,6 @@ public class GameActivity extends AppCompatActivity {
         }
         return super.onTouchEvent(event);
     }
-
 
     public void updateGrid() {
         GridLayout gl = findViewById(R.id.grid);
